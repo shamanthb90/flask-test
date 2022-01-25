@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  fr-app:
+    restart: always
+    init: true
+    build:
+      context: reader-app
+      dockerfile: Dockerfile
+    image: fr-app:0.1.0
+    container_name: fr-app
+    ports:
+      - 8000:8000
+    expose:
+      - 8000
+    cap_add:
+      - SYS_PTRACE
+    ulimits:
+      nproc: 65536
+      nofile:
+        soft: 24576
+        hard: 49152
+
